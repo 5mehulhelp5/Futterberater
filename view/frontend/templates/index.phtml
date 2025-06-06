@@ -1,0 +1,61 @@
+<div id="result-container">
+    <div id="loading-indicator" style="display: none;" aria-hidden="true">Lade...</div>
+    <form id="futter-form" aria-label="Futterberater-Formular">
+        <label for="tierart">Ich habe eine(n):</label>
+        <select id="tierart" name="tierart" aria-required="true">
+            <option value="hund">Hund</option>
+            <option value="katze">Katze</option>
+        </select>
+
+        <div id="hund-optionen" style="display:none;">
+            <label for="altersgruppe">Altersgruppe:</label>
+            <select id="altersgruppe" name="altersgruppe" aria-required="true">
+                <option value="welpe">Welpe</option>
+                <option value="erwachsen" selected>Erwachsener</option>
+            </select>
+
+            <label for="futtervorliebe">Mein Hund liebt:</label>
+            <select id="futtervorliebe" name="futtervorliebe" aria-required="true">
+                <option value="trocken">Trockenfutter</option>
+                <option value="nass">Nassfutter</option>
+                <option value="beides" selected>Beides</option>
+            </select>
+
+            <label id="geschmacksrichtungen-label">Geschmacksrichtungen:</label>
+            <div id="geschmacksrichtungen" role="group" aria-labelledby="geschmacksrichtungen-label">
+                <label><input type="checkbox" name="geschmack" value="beef" checked> Beef</label>
+                <label><input type="checkbox" name="geschmack" value="chicken" checked> Chicken</label>
+                <label><input type="checkbox" name="geschmack" value="lamb" checked> Lamb</label>
+                <label><input type="checkbox" name="geschmack" value="iberico" checked> Iberico</label>
+                <label><input type="checkbox" name="geschmack" value="fish" checked> Fish</label>
+                <label><input type="checkbox" name="geschmack" value="turkey" checked> Turkey</label>
+                <label><input type="checkbox" name="geschmack" value="duck" checked> Duck</label>
+                <label><input type="checkbox" name="geschmack" value="salmon" checked> Salmon</label>
+            </div>
+        </div>
+
+        <label for="weight">Gewicht in kg:</label>
+        <input type="number" id="weight" name="weight" value="10" step="0.1" min="0" required aria-required="true" />
+        <div id="weight-error" class="error-message" style="display: none;" role="alert">Bitte gib ein gültiges Gewicht ein.</div>
+
+        <label for="activity">Aktivitätslevel:</label>
+        <select id="activity" name="activity" aria-required="true">
+            <option value="0.9">sehr niedrig</option>
+            <option value="0.95">niedrig</option>
+            <option value="1" selected>mittel</option>
+            <option value="1.05">hoch</option>
+            <option value="1.1">sehr hoch</option>
+        </select>
+    </form>
+
+    <div id="futter-result" role="region" aria-live="polite"></div>
+</div>
+
+<?php
+$parsedProducts = $block->getParsedProducts() ?: [];
+$jsProducts = json_encode($parsedProducts, JSON_HEX_QUOT | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS);
+?>
+
+<script type="text/javascript">
+    let products = <?php echo $jsProducts; ?>;
+</script>

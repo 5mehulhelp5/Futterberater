@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Cytracon_Futterberater::css/futterberater.css"/>
+        <script src="Cytracon_Futterberater::js/futterberater-data.js"/>
+        <script src="Cytracon_Futterberater::js/futterberater-logic.js"/>
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <block class="Cytracon\Futterberater\Block\Index" name="cytracon.futterberater" template="Cytracon_Futterberater::index.phtml"/>
+        </referenceContainer>
+    </body>
+</page>

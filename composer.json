@@ -1,0 +1,17 @@
+{
+  "name": "cytracon/futterberater",
+  "description": "Magento Futterberater Plugin",
+  "type": "magento2-module",
+  "license": "proprietary",
+  "autoload": {
+    "files": [
+      "registration.php"
+    ],
+    "psr-4": {
+      "Cytracon\\Futterberater\\": ""
+    }
+  },
+  "require": {
+    "php": "^7.4 || ^8.0"
+  }
+}

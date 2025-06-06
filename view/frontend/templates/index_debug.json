@@ -1,0 +1,20 @@
+{
+  "hint": "Wenn parent_categories leer oder fehlt, funktioniert die JS-Filterung nicht.",
+  "example_expected_structure": {
+    "name": "Adult Chicken, 1,5 kg",
+    "sku": "500110",
+    "price_kg": 12,
+    "parent_url_key": "platinum-adult-chicken",
+    "parent_image_url": "https://...",
+    "futter_data": [
+      {
+        "weight": 1,
+        "recommendation": 30
+      }
+    ],
+    "parent_categories": [
+      6,
+      7
+    ]
+  }
+}
