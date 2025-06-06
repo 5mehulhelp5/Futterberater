@@ -3,6 +3,12 @@
   "description": "Magento Futterberater Plugin",
   "type": "magento2-module",
   "license": "proprietary",
+  "authors": [
+    {
+      "name": "Cytracon Webservices",
+      "email": "bb@cytracon.com"
+    }
+  ],
   "autoload": {
     "files": [
       "registration.php"
@@ -12,6 +18,6 @@
     }
   },
   "require": {
-    "php": "^7.4 || ^8.0"
+    "php": ">=7.4 <8.5"
   }
 }
