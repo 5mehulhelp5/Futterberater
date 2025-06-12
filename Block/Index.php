@@ -49,7 +49,7 @@ class Index extends Template
         parent::__construct($context, $data);
     }
 
-    public function getParsedProducts()
+    public function getParsedProducts(): array
     {
         $cacheKey = 'cytracon_futterberater_products_' . $this->storeManager->getStore()->getId();
         $cachedProducts = $this->cache->load($cacheKey);

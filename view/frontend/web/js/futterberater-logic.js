@@ -2,17 +2,13 @@
 console.log("futterberater-logic.js geladen, Erstellungsdatum: 30. April 2025, 20:00 UTC");
 
 // Debounce-Funktion für Eingaben
-function debounce(func, wait) {
+const debounce = (func, wait) => {
     let timeout;
-    return function executedFunction(...args) {
-        const later = () => {
-            clearTimeout(timeout);
-            func(...args);
-        };
+    return (...args) => {
         clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
+        timeout = setTimeout(() => func(...args), wait);
     };
-}
+};
 
 // Filtert Produkte basierend auf Benutzereingaben
 function filterProducts(products, tierart, weight, geschmackInputs, relevantCategories) {
