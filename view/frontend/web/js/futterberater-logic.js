@@ -26,8 +26,8 @@ function filterProducts(products, tierart, weight, geschmackInputs, relevantCate
             }
 
             if (tierart === "hund") {
-                const alter = document.getElementById("altersgruppe")?.value;
-                const vorliebe = document.getElementById("futtervorliebe")?.value;
+                const alter = document.querySelector('input[name="altersgruppe"]:checked')?.value;
+                const vorliebe = Array.from(document.querySelectorAll('input[name="futtervorliebe"]:checked')).map(cb => cb.value);
                 const isPuppy = product.name.toLowerCase().includes("puppy") || product.name.toLowerCase().includes("mini puppy");
 
                 if (alter === "welpe" && !isPuppy) {
