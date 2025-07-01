@@ -1,25 +1,25 @@
 <div id="result-container">
     <div id="loading-indicator" style="display: none;" aria-hidden="true">Lade...</div>
     <form id="futter-form" aria-label="Futterberater-Formular">
-<label>Ich habe eine(n):</label>
-        <div id="tierart-group" role="radiogroup" aria-required="true">
-            <label><input type="radio" name="tierart" value="hund" checked> Hund</label>
-            <label><input type="radio" name="tierart" value="katze"> Katze</label>
-        </div>
+        <label for="tierart">Ich habe eine(n):</label>
+        <select id="tierart" name="tierart" aria-required="true">
+            <option value="hund">Hund</option>
+            <option value="katze">Katze</option>
+        </select>
 
         <div id="hund-optionen" style="display:none;">
             <label for="altersgruppe">Altersgruppe:</label>
-<label>Altersgruppe:</label>
-            <div id="altersgruppe-group" role="radiogroup" aria-required="true">
-                <label><input type="radio" name="altersgruppe" value="welpe"> Welpe</label>
-                <label><input type="radio" name="altersgruppe" value="erwachsen" checked> Erwachsener</label>
-            </div>
+            <select id="altersgruppe" name="altersgruppe" aria-required="true">
+                <option value="welpe">Welpe</option>
+                <option value="erwachsen" selected>Erwachsener</option>
+            </select>
 
-            <label>Mein Hund liebt:</label>
-            <div id="futtervorliebe-group" role="group" aria-required="true">
-                <label><input type="checkbox" name="futtervorliebe" value="trocken"> Trockenfutter</label>
-                <label><input type="checkbox" name="futtervorliebe" value="nass"> Nassfutter</label>
-            </div>
+            <label for="futtervorliebe">Mein Hund liebt:</label>
+            <select id="futtervorliebe" name="futtervorliebe" aria-required="true">
+                <option value="trocken">Trockenfutter</option>
+                <option value="nass">Nassfutter</option>
+                <option value="beides" selected>Beides</option>
+            </select>
 
             <label id="geschmacksrichtungen-label">Geschmacksrichtungen:</label>
             <div id="geschmacksrichtungen" role="group" aria-labelledby="geschmacksrichtungen-label">
