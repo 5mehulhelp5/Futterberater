@@ -26,8 +26,11 @@ function filterProducts(products, tierart, weight, geschmackInputs, relevantCate
             }
 
             if (tierart === "hund") {
-                const alter = document.getElementById("altersgruppe")?.value;
-                const vorliebe = document.getElementById("futtervorliebe")?.value;
+                const alter = document.querySelector('input[name="altersgruppe"]:checked')?.value;
+                const futtervorliebeInputs = document.querySelectorAll('input[name="futtervorliebe"]:checked');
+                const vorlieben = Array.from(futtervorliebeInputs).map(input => input.value);
+                const vorliebe = vorlieben.length === 2 ? "beides" : vorlieben[0] || "";
+
                 const isPuppy = product.name.toLowerCase().includes("puppy") || product.name.toLowerCase().includes("mini puppy");
 
                 if (alter === "welpe" && !isPuppy) {
@@ -170,7 +173,7 @@ window.calculateFeed = function () {
             container.style.opacity = 0;
         }
 
-        const tierart = document.getElementById("tierart")?.value;
+        const tierart = document.querySelector('input[name="tierart"]:checked')?.value;
         const weight = parseFloat(document.getElementById("weight")?.value);
         const weightError = document.getElementById("weight-error");
         const activity = document.getElementById("activity");
@@ -241,20 +244,21 @@ window.calculateFeed = function () {
 // Event-Listener
 document.addEventListener("DOMContentLoaded", function () {
     try {
-        const tierart = document.getElementById("tierart");
+        const tierartInputs = document.querySelectorAll('input[name="tierart"]');
         const hundOptionen = document.getElementById("hund-optionen");
-        const altersgruppe = document.getElementById("altersgruppe");
-        const futtervorliebe = document.getElementById("futtervorliebe");
+        const altersgruppeInputs = document.querySelectorAll('input[name="altersgruppe"]');
+        const futtervorliebeInputs = document.querySelectorAll('input[name="futtervorliebe"]');
         const weight = document.getElementById("weight");
         const activity = document.getElementById("activity");
         const geschmackInputs = document.querySelectorAll('input[name="geschmack"]');
 
-        if (!tierart || !hundOptionen || !altersgruppe || !futtervorliebe || !weight || !activity) {
+        if (!tierartInputs.length || !hundOptionen || !altersgruppeInputs.length || !futtervorliebeInputs.length || !weight || !activity) {
             throw new Error("Ein oder mehrere Formularelemente fehlen");
         }
 
         function updateOptionen() {
-            if (tierart.value === "hund") {
+            const tierart = document.querySelector('input[name="tierart"]:checked')?.value;
+            if (tierart === "hund") {
                 hundOptionen.style.display = "block";
             } else {
                 hundOptionen.style.display = "none";
@@ -266,14 +270,12 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         }
 
-        tierart.addEventListener("change", updateOptionen);
-        altersgruppe.addEventListener("change", window.calculateFeed);
-        futtervorliebe.addEventListener("change", window.calculateFeed);
+        tierartInputs.forEach(input => input.addEventListener("change", updateOptionen));
+        altersgruppeInputs.forEach(input => input.addEventListener("change", window.calculateFeed));
+        futtervorliebeInputs.forEach(input => input.addEventListener("change", window.calculateFeed));
         weight.addEventListener("input", debounce(window.calculateFeed, 300));
         activity.addEventListener("change", window.calculateFeed);
-        geschmackInputs.forEach(input => {
-            input.addEventListener("change", window.calculateFeed);
-        });
+        geschmackInputs.forEach(input => input.addEventListener("change", window.calculateFeed));
 
         setTimeout(updateOptionen, 1500);
     } catch (error) {

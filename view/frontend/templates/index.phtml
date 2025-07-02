@@ -1,28 +1,33 @@
 <div id="result-container">
     <div id="loading-indicator" style="display: none;" aria-hidden="true">Lade...</div>
     <form id="futter-form" aria-label="Futterberater-Formular">
-        <label for="tierart">Ich habe eine(n):</label>
-        <select id="tierart" name="tierart" aria-required="true">
-            <option value="hund">Hund</option>
-            <option value="katze">Katze</option>
-        </select>
+        <fieldset class="radio-group tierart-group">
+            <legend>Ich habe eine(n):</legend>
+            <div class="options">
+                <label><input type="radio" name="tierart" value="hund" checked required aria-required="true"> Hund</label>
+                <label><input type="radio" name="tierart" value="katze" required aria-required="true"> Katze</label>
+            </div>
+        </fieldset>
 
-        <div id="hund-optionen" style="display:none;">
-            <label for="altersgruppe">Altersgruppe:</label>
-            <select id="altersgruppe" name="altersgruppe" aria-required="true">
-                <option value="welpe">Welpe</option>
-                <option value="erwachsen" selected>Erwachsener</option>
-            </select>
+        <div id="hund-optionen" style="display: block;">
+            <fieldset class="radio-group altersgruppe-group">
+                <legend>Altersgruppe:</legend>
+                <div class="options">
+                    <label><input type="radio" name="altersgruppe" value="welpe" required aria-required="true"> Welpe</label>
+                    <label><input type="radio" name="altersgruppe" value="erwachsen" checked required aria-required="true"> Erwachsener</label>
+                </div>
+            </fieldset>
 
-            <label for="futtervorliebe">Mein Hund liebt:</label>
-            <select id="futtervorliebe" name="futtervorliebe" aria-required="true">
-                <option value="trocken">Trockenfutter</option>
-                <option value="nass">Nassfutter</option>
-                <option value="beides" selected>Beides</option>
-            </select>
+            <fieldset class="checkbox-group futtervorliebe-group">
+                <legend>Mein Hund liebt:</legend>
+                <div class="options">
+                    <label><input type="checkbox" name="futtervorliebe" value="trocken" checked> Trockenfutter</label>
+                    <label><input type="checkbox" name="futtervorliebe" value="nass" checked> Nassfutter</label>
+                </div>
+            </fieldset>
 
             <label id="geschmacksrichtungen-label">Geschmacksrichtungen:</label>
-            <div id="geschmacksrichtungen" role="group" aria-labelledby="geschmacksrichtungen-label">
+            <div id="geschmacksrichtungen" role="group" aria-labelledby="geschmacksrichtungen-label" class="checkbox-group geschmacksrichtungen-group">
                 <label><input type="checkbox" name="geschmack" value="beef" checked> Beef</label>
                 <label><input type="checkbox" name="geschmack" value="chicken" checked> Chicken</label>
                 <label><input type="checkbox" name="geschmack" value="lamb" checked> Lamb</label>
@@ -50,6 +55,79 @@
 
     <div id="futter-result" role="region" aria-live="polite"></div>
 </div>
+
+<style>
+    /* Hohe Spezifität, um Theme-Überschreibungen zu verhindern */
+    #futter-form .radio-group,
+    #futter-form .checkbox-group {
+        margin-bottom: 1.5rem;
+    }
+
+    #futter-form .radio-group .options,
+    #futter-form .checkbox-group .options {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+        align-items: center;
+    }
+
+    #futter-form .radio-group label,
+    #futter-form .checkbox-group label {
+        display: flex;
+        align-items: center;
+        font-size: 1.5rem;
+        cursor: pointer;
+        margin: 0; /* Entfernt unerwünschte Margins */
+    }
+
+    #futter-form .radio-group input[type="radio"],
+    #futter-form .checkbox-group input[type="checkbox"] {
+        margin-right: 0.5rem;
+        vertical-align: middle;
+    }
+
+    /* Geschmacksrichtungen als Grid */
+    #futter-form .geschmacksrichtungen-group {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: 0.5rem;
+        margin-top: 0.5rem;
+    }
+
+    /* Allgemeine Formular-Styling */
+    #futter-form legend,
+    #futter-form label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: bold;
+        font-size: 2rem;
+    }
+
+    #futter-form input[type="number"],
+    #futter-form select {
+        width: 100%;
+        padding: 0.5rem;
+        margin-bottom: 1rem;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+    #futter-form .error-message {
+        color: red;
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+    }
+
+    /* Ergebnis-Boxen */
+    #futter-form ~ #futter-result .result-box {
+        border: 1px solid #ddd;
+        padding: 1rem;
+        margin-bottom: 1rem;
+        border-radius: 8px;
+        background-color: #f9f9f9;
+    }
+</style>
 
 <?php
 $parsedProducts = $block->getParsedProducts() ?: [];
