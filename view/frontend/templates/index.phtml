@@ -1,3 +1,4 @@
+<?php echo $block->getChildHtml('futterberater-hero'); ?>
 <div id="result-container">
     <div id="loading-indicator" style="display: none;" aria-hidden="true">Lade...</div>
     <form id="futter-form" aria-label="Futterberater-Formular">
@@ -21,8 +22,8 @@
             <fieldset class="checkbox-group futtervorliebe-group">
                 <legend>Mein Hund liebt:</legend>
                 <div class="options">
-                    <label><input type="checkbox" name="futtervorliebe" value="trocken" checked> Trockenfutter</label>
-                    <label><input type="checkbox" name="futtervorliebe" value="nass" checked> Nassfutter</label>
+                    <label><input type="checkbox" name="futtervorliebe" value="trocken" checked> Trockennahrung</label>
+                    <label><input type="checkbox" name="futtervorliebe" value="nass" checked> Nassnahrung</label>
                 </div>
             </fieldset>
 
@@ -55,7 +56,7 @@
 
     <div id="futter-result" role="region" aria-live="polite"></div>
 </div>
-
+<?php echo $block->getChildHtml('allgemein-kategorie-inhalt'); ?>
 <style>
     /* Hohe Spezifität, um Theme-Überschreibungen zu verhindern */
     #futter-form .radio-group,
